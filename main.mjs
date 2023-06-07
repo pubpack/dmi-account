@@ -13,7 +13,7 @@ function makeAccount() {
         .then((res) => {
           const { account, privateKey, publicKey, hash } = res;
           const data = `${account}, ${privateKey}, ${publicKey}, ${hash}\n`;
-          fs.appendFile("./account.csv", data, { encoding: "utf-8" }, (err) => {
+          fs.appendFile("./out/account.csv", data, { encoding: "utf-8" }, (err) => {
             if (err) {
               console.log(err);
             }
