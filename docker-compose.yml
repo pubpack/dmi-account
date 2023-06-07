@@ -16,6 +16,8 @@ services:
   
   dmi_account:
     image: ghcr.io/pubpack/dmi-account:main
+    container_name: dmi_account
+    pull_policy: always
     links:
       - proxy_pool
     environment:
