@@ -3,6 +3,7 @@ import fetch from "node-fetch";
 import fs from "node:fs";
 
 const PROXY_ADDRESS_POP = process.env.PROXY_ADDRESS_POP
+const MAX_CONNECTION = Math.min(process.env.MAX_CONNECTION || 10, 50)
 
 function makeAccount() {
   return fetch(PROXY_ADDRESS_POP)
@@ -32,7 +33,9 @@ async function main() {
   //     // console.log('-----')
   //   }
   while (true) {
-    await makeAccount();
+    const allPromise = Array(MAX_CONNECTION).fill(0).map(()=> makeAccount())
+    await Promise.all(allPromise)
+    // await makeAccount();
   }
 }
 
