@@ -5,6 +5,8 @@ services:
     container_name: proxy_pool
     expose:
       - 5010
+    ports:
+      - 5010:5010
     links:
       - proxy_redis
     environment:
